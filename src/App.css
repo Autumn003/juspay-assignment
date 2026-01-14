@@ -1,44 +1,31 @@
 @import "tailwindcss";
 
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-background: rgba(255, 255, 255, 1);
+  --color-foreground: rgba(28, 28, 28, 1);
+  --color-primary-brand: rgba(28, 28, 28, 1);
+  --color-primary-light: rgba(247, 249, 251, 1);
+  --color-primary-blue: rgba(227, 245, 255, 1);
+  --color-secondary-blue: rgba(177, 227, 255, 1);
+  --color-primary-purple: rgba(229, 236, 246, 1);
+  --color-secondary-cyan: rgba(168, 197, 218, 1);
+  --color-secondary-mint: rgba(186, 237, 189, 1);
+  --color-secondary-indigo: rgba(149, 164, 252, 1);
+  --color-secondary-green: rgba(161, 227, 203, 1);
+  --color-secondary-yellow: rgba(255, 233, 153);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.dark {
+  --color-background: rgba(28, 28, 28, 1);
+  --color-foreground: rgba(255, 255, 255, 1);
+  --color-primary-brand: rgba(198, 199, 248, 1);
+  --color-primary-light: rgba(255, 255, 255, 0.05);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+@layer base {
+  body {
+    @apply bg-background text-foreground;
   }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
