@@ -111,7 +111,7 @@ export const pages = [
 export const notifications = [
   {
     type: "bug" as const,
-    description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit.",
+    description: "You have a bug that needs to be resolve.",
     time: new Date(),
   },
   {
@@ -181,26 +181,32 @@ export const activities = [
 
 export const contacts = [
   {
+    id: "1",
     name: "Hemant Sharma",
     image: "https://i.pravatar.cc/300",
   },
   {
+    id: "2",
     name: "Robert Phill",
     image: "https://i.pravatar.cc/300",
   },
   {
+    id: "2",
     name: "Dillip Singh",
     image: "https://i.pravatar.cc/300",
   },
   {
+    id: "3",
     name: "Harsh Roy",
     image: "https://i.pravatar.cc/300",
   },
   {
+    id: "4",
     name: "Natali Craig",
     image: "https://i.pravatar.cc/300",
   },
   {
+    id: "5",
     name: "Andi Lane",
     image: "https://i.pravatar.cc/300",
   },

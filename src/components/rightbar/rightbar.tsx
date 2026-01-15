@@ -13,8 +13,8 @@ export default function Rightbar({ className, open, onClose }: Props) {
   return (
     <aside
       className={cn(
-        `z-50 bg-background h-full w-64 md:w-full transition-transform duration-300 fixed md:static top-0 left-0 border-l border-foreground/10 overflow-y-auto no-scrollbar`,
-        open ? "translate-x-0" : "-translate-x-full md:translate-x-0",
+        `z-50 bg-background h-full max-w-70 transition-transform duration-300 fixed lg:static top-0 left-0 border-l border-foreground/10 overflow-y-auto no-scrollbar`,
+        open ? "translate-x-0" : "-translate-x-full lg:translate-x-0",
         className
       )}
     >
@@ -22,32 +22,38 @@ export default function Rightbar({ className, open, onClose }: Props) {
         {/* Mobile close */}
         <button
           onClick={onClose}
-          className="md:hidden self-end text-sm px-2 py-1"
+          className="lg:hidden self-end text-sm px-2 py-1"
         >
           ✕
         </button>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 w-60">
           <div className="py-2 px-1 text-sm font-semibold">
             <p>Notifications</p>
           </div>
           {notifications.map((notification) => (
-            <NotificationCard notification={notification} />
+            <NotificationCard
+              key={notification.description}
+              notification={notification}
+            />
           ))}
         </div>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 w-60">
           <div className="py-2 px-1 text-sm font-semibold">
             <p>Activities</p>
           </div>
           {activities.map((activity) => (
-            <NotificationCard notification={activity} />
+            <NotificationCard
+              key={activity.description}
+              notification={activity}
+            />
           ))}
         </div>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 w-60">
           <div className="py-2 px-1 text-sm font-semibold">
             <p>Contacts</p>
           </div>
           {contacts.map((contact) => (
-            <UserCard user={contact} />
+            <UserCard key={contact.id} user={contact} />
           ))}
         </div>
       </div>

@@ -17,8 +17,8 @@ export default function Sidebar({ className, open, onClose }: Props) {
   return (
     <aside
       className={cn(
-        `z-50 bg-background h-full w-52 md:w-full transition-transform duration-300 fixed md:static top-0 left-0 border-r border-foreground/10 overflow-y-auto no-scrollbar`,
-        open ? "translate-x-0" : "-translate-x-full md:translate-x-0",
+        `z-50 bg-background h-full max-w-53 transition-transform duration-300 fixed lg:static top-0 left-0 border-r border-foreground/10 overflow-y-auto no-scrollbar`,
+        open ? "translate-x-0" : "-translate-x-full lg:translate-x-0",
         className
       )}
     >
@@ -26,23 +26,23 @@ export default function Sidebar({ className, open, onClose }: Props) {
         {/* Mobile close */}
         <button
           onClick={onClose}
-          className="md:hidden self-end text-sm px-2 py-1"
+          className="lg:hidden self-end text-sm px-2 py-1"
         >
           ✕
         </button>
 
         {/* User */}
-        <section>
+        <section className="w-45">
           <UserCard user={user} />
         </section>
 
         {/* Tabs */}
-        <section className="pb-3">
+        <section className="pb-3 w-45">
           <Tab items={tabs} />
         </section>
 
         {/* Dashboard */}
-        <section>
+        <section className="w-45">
           <h2 className="text-sm py-1 px-3 text-foreground/40">Dashboard</h2>
           <div className="space-y-1">
             {dashboardNavigations.map((item) => (
@@ -60,7 +60,7 @@ export default function Sidebar({ className, open, onClose }: Props) {
         </section>
 
         {/* Pages */}
-        <section>
+        <section className="w-45">
           <h2 className="text-sm py-1 px-3 text-foreground/40">Pages</h2>
           <div className="space-y-1">
             {pages.map((item) => (

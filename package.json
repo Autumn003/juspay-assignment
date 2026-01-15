@@ -10,11 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@radix-ui/react-progress": "^1.1.8",
+    "@recharts/devtools": "^0.0.7",
     "@tailwindcss/vite": "^4.1.18",
+    "@vnedyalk0v/react19-simple-maps": "^1.2.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.562.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "recharts": "^3.6.0",
     "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.1.18"
   },
