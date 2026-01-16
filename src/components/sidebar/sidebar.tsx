@@ -1,18 +1,22 @@
-import { useState } from "react";
 import { cn } from "../../lib/utils";
 import { ExpandableMenu } from "../ui/expandable-menu";
 import Tab from "../ui/tab";
 import { user, tabs, dashboardNavigations, pages } from "../content";
 import UserCard from "../ui/user-card";
+import { closeSidebar } from "../../redux/slices/ui-slice";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { setActiveNav } from "../../redux/slices/navigation-slice";
 
 type Props = {
   className?: string;
-  open: boolean;
-  onClose: () => void;
+  open: any;
 };
 
-export default function Sidebar({ className, open, onClose }: Props) {
-  const [active, setActive] = useState("");
+export default function Sidebar({ className, open }: Props) {
+  const active = useAppSelector((state) => state.navigation.activeNav);
+  const dispatch = useAppDispatch();
+
+  console.log(active);
 
   return (
     <aside
@@ -25,7 +29,7 @@ export default function Sidebar({ className, open, onClose }: Props) {
       <div className="py-5 px-4 flex flex-col gap-4 h-full">
         {/* Mobile close */}
         <button
-          onClick={onClose}
+          onClick={() => dispatch(closeSidebar())}
           className="lg:hidden self-end text-sm px-2 py-1"
         >
           ✕
@@ -51,8 +55,7 @@ export default function Sidebar({ className, open, onClose }: Props) {
                 item={item}
                 activeId={active}
                 onSelect={(id) => {
-                  setActive(id);
-                  onClose(); // auto close on mobile
+                  dispatch(setActiveNav(id));
                 }}
               />
             ))}
@@ -69,8 +72,7 @@ export default function Sidebar({ className, open, onClose }: Props) {
                 item={item}
                 activeId={active}
                 onSelect={(id) => {
-                  setActive(id);
-                  onClose();
+                  dispatch(setActiveNav(id));
                 }}
               />
             ))}

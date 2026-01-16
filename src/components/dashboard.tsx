@@ -38,7 +38,7 @@ const salesSources: Array<{
 
 export default function Dashboard() {
   return (
-    <div className="flex flex-col gap-7 w-full ">
+    <div className="flex flex-col gap-7 w-full">
       <p className="text-sm font-semibold">eCommerce</p>
       <div className="flex gap-7 md:flex-row flex-col">
         <div className="flex flex-col gap-7 h-full w-full">

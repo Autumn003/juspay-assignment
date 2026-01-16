@@ -1,4 +1,6 @@
 import { cn } from "../../lib/utils";
+import { useAppDispatch } from "../../redux/hooks";
+import { closeRightbar } from "../../redux/slices/ui-slice";
 import { activities, contacts, notifications } from "../content";
 import NotificationCard from "../ui/notification-card";
 import UserCard from "../ui/user-card";
@@ -6,10 +8,11 @@ import UserCard from "../ui/user-card";
 type Props = {
   className?: string;
   open: boolean;
-  onClose: () => void;
 };
 
-export default function Rightbar({ className, open, onClose }: Props) {
+export default function Rightbar({ className, open }: Props) {
+  const dispatch = useAppDispatch();
+
   return (
     <aside
       className={cn(
@@ -21,7 +24,7 @@ export default function Rightbar({ className, open, onClose }: Props) {
       <div className="p-5 flex flex-col gap-6 h-full">
         {/* Mobile close */}
         <button
-          onClick={onClose}
+          onClick={() => dispatch(closeRightbar())}
           className="lg:hidden self-end text-sm px-2 py-1"
         >
           ✕
