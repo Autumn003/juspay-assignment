@@ -21,7 +21,7 @@ export default function NotificationCard({ notification }: Props) {
     <div className="p-1 rounded-lg flex items-start justify-between gap-2">
       <div
         className={cn(
-          "min-w-6 h-6 p-1 flex items-center justify-center overflow-hidden",
+          "w-6 h-6 p-1 flex items-center justify-center overflow-hidden",
           notification.type === "user" ? "rounded-full" : "rounded-lg",
           notification.type === "bug" ? "bg-primary-blue" : "bg-primary-purple"
         )}
@@ -29,7 +29,7 @@ export default function NotificationCard({ notification }: Props) {
         {notification.type === "user" ? (
           <img
             src={notification.user?.image}
-            className="min-w-6 h-6 rounded-full object-cover"
+            className="min-w-6 h-6 rounded-full"
           />
         ) : (
           <div>

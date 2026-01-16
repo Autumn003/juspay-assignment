@@ -11,7 +11,7 @@ export default function ProgressCard({
 }) {
   return (
     <div>
-      <div className="flex items-center justify-between text-xs">
+      <div className="flex items-center justify-between text-xs mb-1">
         <p>{title}</p>
         <p>{value}K</p>
       </div>

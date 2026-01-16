@@ -8,12 +8,12 @@ import {
 } from "recharts";
 
 const data = [
-  { name: "Jan", current: 15, previous: 8 },
-  { name: "Feb", current: 8, previous: 18 },
-  { name: "Mar", current: 8, previous: 11 },
-  { name: "Apr", current: 16, previous: 13 },
-  { name: "May", current: null, previous: 12 },
-  { name: "Jun", current: null, previous: 21 },
+  { name: "Jan", current: 16, previous: 10 },
+  { name: "Feb", current: 10, previous: 19 },
+  { name: "Mar", current: 13, previous: 16 },
+  { name: "Apr", current: 18, previous: 13 },
+  { name: "May", current: null, previous: 16 },
+  { name: "Jun", current: null, previous: 25 },
 ];
 
 // Projected data for dashed line
@@ -21,9 +21,9 @@ const projectedData = [
   { name: "Jan", current: null, previous: null },
   { name: "Feb", current: null, previous: null },
   { name: "Mar", current: null, previous: null },
-  { name: "Apr", current: 16, previous: null },
-  { name: "May", current: 24, previous: null },
-  { name: "Jun", current: 16, previous: null },
+  { name: "Apr", current: 18, previous: null },
+  { name: "May", current: 21, previous: null },
+  { name: "Jun", current: 21, previous: null },
 ];
 
 const YaxisCordinates = [0, 10, 20, 30];
@@ -62,7 +62,7 @@ export default function StackedBarChart() {
 
           {/* Current Week - Black solid line */}
           <Line
-            type="monotone"
+            type="natural"
             dataKey="current"
             stroke="var(--color-primary-brand)"
             strokeWidth={2.5}
@@ -72,7 +72,7 @@ export default function StackedBarChart() {
 
           {/* Previous Week - Blue solid line */}
           <Line
-            type="monotone"
+            type="natural"
             dataKey="previous"
             stroke="var(--color-secondary-cyan)"
             strokeWidth={2.5}
@@ -82,7 +82,7 @@ export default function StackedBarChart() {
 
           {/* Projected dashed line */}
           <Line
-            type="monotone"
+            type="natural"
             data={projectedData}
             dataKey="current"
             stroke="var(--color-primary-brand)"
