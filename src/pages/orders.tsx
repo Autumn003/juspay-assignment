@@ -75,6 +75,9 @@ export default function Orders() {
 
   return (
     <div className="flex flex-col gap-7 w-full">
+      <a href="/" className="text-xs underline -my-4">
+        Go to Dashboard Page
+      </a>
       <p className="text-sm font-semibold">Order List</p>
       <section
         id="top-bar"

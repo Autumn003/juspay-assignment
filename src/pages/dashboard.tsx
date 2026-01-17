@@ -49,6 +49,9 @@ const salesData: Array<{
 export default function Dashboard() {
   return (
     <div className="flex flex-col gap-7 w-full">
+      <a href="/orders" className="text-xs underline -my-4">
+        Go to Orders Page
+      </a>
       <p className="text-sm font-semibold">eCommerce</p>
       <section className="flex gap-7 md:flex-row flex-col">
         <div className="flex flex-col gap-7 h-full w-full">

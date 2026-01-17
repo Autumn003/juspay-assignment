@@ -11,7 +11,7 @@ function App() {
       element: <Layout />,
       children: [
         { index: true, element: <Dashboard /> },
-        { path: "orders", element: <Orders /> },
+        { path: "/orders", element: <Orders /> },
       ],
     },
   ]);
