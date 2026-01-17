@@ -82,6 +82,7 @@ The application will be available at `http://localhost:5173` (or another port if
 
 ### File Structure
 
+```
 ├── public
 │ ├── 3D03.png
 │ ├── 3D05.png
@@ -160,3 +161,4 @@ The application will be available at `http://localhost:5173` (or another port if
 ├── tsconfig.node.json
 ├── vercel.json
 └── vite.config.ts
+```
