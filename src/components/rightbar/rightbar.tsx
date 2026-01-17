@@ -1,8 +1,8 @@
 import { cn } from "../../lib/utils";
 import { useAppDispatch } from "../../redux/hooks";
 import { closeRightbar } from "../../redux/slices/ui-slice";
-import { activities, contacts, notifications } from "../content";
-import NotificationCard from "../ui/notification-card";
+import { activities, contacts, notifications } from "../../constants/content";
+import NotificationCard from "./notification-card";
 import UserCard from "../ui/user-card";
 
 type Props = {
@@ -16,9 +16,11 @@ export default function Rightbar({ className, open }: Props) {
   return (
     <aside
       className={cn(
-        `z-50 bg-background h-full max-w-70 transition-transform duration-300 fixed lg:static top-0 left-0 border-l border-foreground/10 overflow-y-auto no-scrollbar`,
-        open ? "translate-x-0" : "-translate-x-full lg:translate-x-0",
-        className
+        ` bg-background h-full max-w-70 transition-transform duration-300 fixed lg:static top-0 right-0 border-l border-foreground/10 overflow-y-auto no-scrollbar`,
+        open
+          ? "translate-x-0"
+          : "-translate-x-full lg:translate-x-0 rounded-l-lg",
+        className,
       )}
     >
       <div className="p-5 flex flex-col gap-6 h-full">
@@ -33,10 +35,11 @@ export default function Rightbar({ className, open }: Props) {
           <div className="py-2 px-1 text-sm font-semibold">
             <p>Notifications</p>
           </div>
-          {notifications.map((notification) => (
+          {notifications.map((notification, index) => (
             <NotificationCard
-              key={notification.description}
+              key={index}
               notification={notification}
+              isLast={true}
             />
           ))}
         </div>
@@ -44,10 +47,11 @@ export default function Rightbar({ className, open }: Props) {
           <div className="py-2 px-1 text-sm font-semibold">
             <p>Activities</p>
           </div>
-          {activities.map((activity) => (
+          {activities.map((activity, index) => (
             <NotificationCard
-              key={activity.description}
+              key={index}
               notification={activity}
+              isLast={index === notifications.length}
             />
           ))}
         </div>
@@ -55,8 +59,8 @@ export default function Rightbar({ className, open }: Props) {
           <div className="py-2 px-1 text-sm font-semibold">
             <p>Contacts</p>
           </div>
-          {contacts.map((contact) => (
-            <UserCard key={contact.id} user={contact} />
+          {contacts.map((contact, index) => (
+            <UserCard key={index} user={contact} />
           ))}
         </div>
       </div>

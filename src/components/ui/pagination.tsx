@@ -37,11 +37,6 @@ function PaginationItem({ ...props }: React.ComponentProps<"li">) {
   return <li data-slot="pagination-item" {...props} />;
 }
 
-// type PaginationLinkProps = {
-//   isActive?: boolean;
-// } & Pick<React.ComponentProps<typeof Button>, "size"> &
-//   React.ComponentProps<"a">;
-
 function PaginationLink({ className, isActive, size = "icon", ...props }: any) {
   return (
     <Button
@@ -61,12 +56,10 @@ function PaginationPrevious({
   return (
     <PaginationLink
       aria-label="Go to previous page"
-      //   size="default"
       className={cn("text-sm", className)}
       {...props}
     >
       <ChevronLeftIcon size={20} />
-      {/* <span className="hidden sm:block">Previous</span> */}
     </PaginationLink>
   );
 }
@@ -78,11 +71,9 @@ function PaginationNext({
   return (
     <PaginationLink
       aria-label="Go to next page"
-      //   size="default"
       className={cn("", className)}
       {...props}
     >
-      {/* <span className="hidden sm:block">Next</span> */}
       <ChevronRightIcon size={20} />
     </PaginationLink>
   );

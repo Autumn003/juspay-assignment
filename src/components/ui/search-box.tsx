@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Circle, File, Search, X } from "lucide-react";
 import { cn } from "../../lib/utils";
-import { dashboardNavigations, pages } from "../content";
+import { dashboardNavigations, pages } from "../../constants/content";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { closeSearchbox, toggleSearchbox } from "../../redux/slices/ui-slice";
 
@@ -103,7 +103,7 @@ export default function SearchBox({ className }: any) {
         <div
           className={cn(
             "bg-background text-foreground/50 border-foreground/10 flex h-96 w-full max-w-2xl flex-col rounded-xl border pb-2 shadow-2xl transition-all duration-300",
-            className
+            className,
           )}
           ref={boxRef}
         >

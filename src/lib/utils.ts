@@ -1,5 +1,11 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { dashboardNavigations, pages } from "../constants/content";
+
+type BreadcrumbItem = {
+  label: string;
+  url?: string;
+};
 
 export function cn(...inputs: ClassValue[]): string {
   return twMerge(clsx(inputs));
@@ -61,4 +67,30 @@ export function formatDate(dateInput: string | Date): string {
     month: "long",
     year: "numeric",
   });
+}
+
+export function getBreadcrumbs(pathname: string): BreadcrumbItem[] {
+  const allNavs = [...dashboardNavigations, ...pages];
+
+  // first ry top-level match
+  for (const nav of allNavs) {
+    if ("url" in nav && nav.url === pathname) {
+      return [{ label: "Dashboard", url: "/" }, { label: nav.label }];
+    }
+
+    // then try child match
+    if (nav.children) {
+      const child = nav.children.find((c) => c.url === pathname);
+      if (child) {
+        return [
+          { label: "Dashboard", url: "/" },
+          { label: nav.label },
+          { label: child.label },
+        ];
+      }
+    }
+  }
+
+  // fallback
+  return [{ label: "Dashboard" }];
 }

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import clsx from "clsx";
+import Button from "../ui/button";
+import { cn } from "../../lib/utils";
 
 type ToggleChild = {
   id: string;
@@ -16,28 +17,27 @@ type ToggleSectionProps = {
 };
 
 export default function Tab({ items }: ToggleSectionProps) {
-  // first item is always active by default
   const [activeIndex, setActiveIndex] = useState(0);
 
   const activeItem = items[activeIndex];
 
   return (
-    <section className="flex flex-col gap-2 pb-3">
+    <div className="flex flex-col gap-2 pb-3">
       {/* Tabs */}
       <div className="flex items-center justify-between gap-2 text-sm">
         {items.map((item, index) => (
-          <button
+          <Button
             key={item.label}
             onClick={() => setActiveIndex(index)}
-            className={clsx(
-              "py-1 px-2 transition-colors",
+            className={cn(
+              "py-1 px-2 transition-colors w-full",
               index === activeIndex
                 ? "text-foreground/40"
-                : "text-foreground/20 hover:text-foreground/40"
+                : "text-foreground/20 hover:text-foreground/40",
             )}
           >
             {item.label}
-          </button>
+          </Button>
         ))}
       </div>
 
@@ -47,7 +47,7 @@ export default function Tab({ items }: ToggleSectionProps) {
           <ToggleItemRow key={child.id} label={child.label} />
         ))}
       </div>
-    </section>
+    </div>
   );
 }
 

@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { initialOrders, type Order } from "../../components/content";
+import { initialOrders, type Order } from "../../constants/content";
 
 interface OrderState {
   orders: Order[];
@@ -15,12 +15,12 @@ const orderSlice = createSlice({
   reducers: {
     createOrder: (
       state,
-      action: PayloadAction<Omit<Order, "orderId" | "date">>
+      action: PayloadAction<Omit<Order, "orderId" | "date">>,
     ) => {
       const newOrder: Order = {
         ...action.payload,
         orderId: `#CM${Math.floor(9000 + Math.random() * 1000)}`,
-        date: new Date(),
+        date: new Date().toISOString(),
       };
 
       state.orders.unshift(newOrder);
