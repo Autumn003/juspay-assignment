@@ -22,6 +22,7 @@ import SearchButton from "../components/ui/search-button";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { createOrder } from "../redux/slices/order-slice";
 import OrdersPagination from "../components/orders/orders-pagination";
+import Avatar from "../components/ui/avatar";
 
 export default function Orders() {
   const orderList = useAppSelector((state) => state.order.orders);
@@ -180,10 +181,7 @@ export default function Orders() {
                 <TableCell>{order.orderId}</TableCell>
                 <TableCell>
                   <div className="flex items-center gap-2">
-                    <img
-                      src={order.userImage}
-                      className="h-6 w-6 rounded-full md:block hidden"
-                    />
+                    <Avatar src={order.userImage} alt="" />
                     {order.userName}
                   </div>
                 </TableCell>

@@ -1,5 +1,6 @@
 import { Bug, Radio, UserRound } from "lucide-react";
 import { cn, formatDate } from "../../lib/utils";
+import Avatar from "../ui/avatar";
 
 interface User {
   image: string;
@@ -31,10 +32,7 @@ export default function NotificationCard({ notification, isLast }: Props) {
           )}
         >
           {notification.type === "user" ? (
-            <img
-              src={notification.user?.image}
-              className="min-w-6 h-6 rounded-full"
-            />
+            <Avatar src={notification.user?.image || ""} />
           ) : (
             <div className="text-[#1c1c1c]">
               {notification.type === "bug" && <Bug className="w-4 h-4" />}

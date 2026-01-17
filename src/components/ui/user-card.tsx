@@ -1,3 +1,5 @@
+import Avatar from "./avatar";
+
 export default function UserCard({
   user,
 }: {
@@ -5,7 +7,7 @@ export default function UserCard({
 }) {
   return (
     <div className="flex items-center gap-2 h-8">
-      <img src={user.image} className="w-6 h-6 rounded-full" />
+      <Avatar src={user.image} />
       <p className="text-sm">{user.name}</p>
     </div>
   );

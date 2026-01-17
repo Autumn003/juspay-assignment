@@ -1,73 +1,162 @@
-# React + TypeScript + Vite
+# Juspay UI Developer Assignment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Live Demo
 
-Currently, two official plugins are available:
+Visit live application: [Project Demo](https://juspay-assignment-ktvtxeryh-autumn003s-projects.vercel.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Getting Started
 
-## React Compiler
+These instructions will help you set up and run the project on your local machine.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Installation
 
-## Expanding the ESLint configuration
+1. Clone the repository
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone https://github.com/Autumn003/juspay-assignment.git
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Navigate to the project directory
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+cd juspay-assignment
 ```
+
+3. Install dependencies
+
+```bash
+npm install
+```
+
+### Running the Development Server
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+The application will be available at `http://localhost:5173` (or another port if 5173 is not availabble).
+
+## Available Scripts
+
+- `npm run dev` - Starts the development server
+- `npm run build` - Builds the app for production
+- `npm run preview` - Preview the production build locally
+
+## Functionality included
+
+### Core Features
+
+#### Redux-based State Management
+
+- Centralized and scalable state management for orders, UI state, and navigation.
+
+#### Orders Management
+
+- Sorting orders
+- Filtering orders (including reverse order)
+- Pagination for large datasets
+
+#### Global Search
+
+- Header search for quick navigation
+
+#### Dark Mode
+
+- Theme toggling implemented using Context API
+
+#### Lazy loading & code spliting
+
+- Implemented route-based lazy loading using React.lazy and Suspense to improve initial load time and performance.
+
+### More
+
+- Pixel-perfect implementation matching the provided Figma design
+- Smooth micro-interactions for enhanced user experience
+- Fully responsive layout:
+  - Desktop
+  - Tablet
+  - Mobile
+- Optimized component structure for faster rendering
+
+### File Structure
+
+├── public
+│ ├── 3D03.png
+│ ├── 3D05.png
+│ ├── 3D08.png
+│ ├── ByeWind.png
+│ ├── Female05.png
+│ ├── Female08.png
+│ ├── Female09.png
+│ ├── Female15.png
+│ ├── Male06.png
+│ ├── Male07.png
+│ ├── Male08.png
+│ ├── Male11.png
+│ └── vite.svg
+├── src
+│ ├── assets
+│ │ └── react.svg
+│ ├── components
+│ │ ├── dashboard -- (Components used in dashboad page)
+│ │ │ ├── line-chart.tsx
+│ │ │ ├── pie-chart.tsx
+│ │ │ ├── products-table.tsx
+│ │ │ ├── progress-card.tsx
+│ │ │ ├── stacked-bar-chart.tsx
+│ │ │ └── world-map.tsx
+│ │ ├── header -- (Header with components used in it)
+│ │ │ ├── breadcrumb.tsx
+│ │ │ └── header.tsx
+│ │ ├── orders -- (components used in orders page)
+│ │ │ └── orders-pagination.tsx
+│ │ ├── rightbar -- (Rightbar with component used in it)
+│ │ │ ├── notification-card.tsx
+│ │ │ └── rightbar.tsx
+│ │ ├── sidebar -- (Sidebar with component used in it)
+│ │ │ ├── expandable-menu.tsx
+│ │ │ ├── sidebar.tsx
+│ │ │ └── tab.tsx
+│ │ └── ui -- (Reusable ui components)
+│ │ ├── avatar.tsx
+│ │ ├── button.tsx
+│ │ ├── checkbox.tsx
+│ │ ├── pagination.tsx
+│ │ ├── search-box.tsx
+│ │ ├── search-button.tsx
+│ │ ├── table.tsx
+│ │ └── user-card.tsx
+│ ├── constants -- (All constant used all over the application)
+│ │ └── content.tsx
+│ ├── lib
+│ │ ├── theme-toggler.tsx -- (context api theme toggler)
+│ │ └── utils.ts -- (utility functions)
+│ ├── pages
+│ │ ├── dashboard.tsx
+│ │ ├── orders.tsx
+│ │ └── page-loader.tsx
+│ ├── redux
+│ │ ├── hooks -- (Selector and Dispatch hook to retrieve and dispatch the data)
+│ │ │ └── index.ts
+│ │ ├── slices -- (reducers file for redux state management)
+│ │ │ ├── navigation-slice.ts
+│ │ │ ├── order-slice.ts
+│ │ │ └── ui-slice.ts
+│ │ └── store -- (Redux store)
+│ │ └── index.ts
+│ ├── App.css
+│ ├── App.tsx
+│ ├── index.css
+│ └── main.tsx
+├── eslint.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── README.md
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+├── vercel.json
+└── vite.config.ts
