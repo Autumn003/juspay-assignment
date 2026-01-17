@@ -2,7 +2,7 @@
 
 ## Live Demo
 
-Visit live application: [Project Demo](https://juspay-assignment-ktvtxeryh-autumn003s-projects.vercel.app)
+Visit live application: [Project Demo](juspay-assignment-r5av-ibuehl9gf-autumn003s-projects.vercel.app)
 
 ## Getting Started
 
