@@ -1,20 +1,20 @@
 import { Search } from "lucide-react";
-import { useAppDispatch } from "../../redux/hooks";
-import { openSearchbox } from "../../redux/slices/ui-slice";
 import { cn } from "../../lib/utils";
+import Button from "./button";
 
 export default function SearchButton({
   className,
   CMDClassName,
+  onClick,
 }: {
   className?: string;
   CMDClassName?: string;
+  onClick?: () => void;
 }) {
-  const dispatch = useAppDispatch();
   return (
     <div>
       <button
-        onClick={() => dispatch(openSearchbox())}
+        onClick={onClick}
         className={cn(
           "items-center justify-between py-1 px-2 rounded-lg bg-foreground/10 text-foreground/20 md:flex hidden h-7",
           className
@@ -33,12 +33,9 @@ export default function SearchButton({
           <p>⌘/</p>
         </div>
       </button>
-      <button
-        className="w-7 h-7 p-1 md:hidden block"
-        onClick={() => dispatch(openSearchbox())}
-      >
+      <Button className="w-7 h-7 p-1 md:hidden block" onClick={onClick}>
         <Search size={20} />
-      </button>
+      </Button>
     </div>
   );
 }

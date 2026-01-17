@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { cn, formatDate } from "../lib/utils";
-import { orderList } from "./content";
 import {
   Pagination,
   PaginationContent,
@@ -28,22 +27,77 @@ import {
 } from "lucide-react";
 import Button from "./ui/button";
 import SearchButton from "./ui/search-button";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { createOrder } from "../redux/slices/order-slice";
 
 export default function Orders() {
+  const orderList = useAppSelector((state) => state.order.orders);
+  const dispatch = useAppDispatch();
   const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set());
+
+  const [reverse, setReverse] = useState(false);
+  const [sortByDate, setSortByDate] = useState(false);
+
+  const orders = (() => {
+    let data = [...orderList];
+
+    if (sortByDate) {
+      data.sort(
+        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+      );
+    }
+
+    if (reverse) {
+      data.reverse();
+    }
+
+    return data;
+  })();
+
+  const handleReverse = () => {
+    setReverse((prev) => !prev);
+  };
+  const handleSortByDate = () => {
+    setSortByDate((prev) => !prev);
+  };
+
+  const ITEMS_PER_PAGE = 10;
+  const [page, setPage] = useState(1);
+
+  const totalPages = Math.ceil(orders.length / ITEMS_PER_PAGE);
+
+  const paginatedOrders = orders.slice(
+    (page - 1) * ITEMS_PER_PAGE,
+    page * ITEMS_PER_PAGE
+  );
+
   return (
     <div className="flex flex-col gap-7 w-full">
       <p className="text-sm font-semibold">Order List</p>
       <div className="bg-primary-light flex items-center justify-between gap-4 p-2 rounded-lg">
         <div className="flex items-center gap-2">
-          <Button>
+          <Button
+            onClick={() =>
+              dispatch(
+                createOrder({
+                  userName: "John Doe",
+                  userImage: "Male01.png",
+                  projectName: "New Dashboard",
+                  address: "San Jose, CA",
+                  status: "IN_PROGRESS",
+                  status_text: "In Progress",
+                  status_color: "#8a8cd9",
+                })
+              )
+            }
+          >
             <Plus size={20} />
           </Button>
           <Button>
-            <ListFilter size={20} />
+            <ListFilter size={20} onClick={handleSortByDate} />
           </Button>
           <Button>
-            <ArrowUpDown size={20} />
+            <ArrowUpDown size={20} onClick={handleReverse} />
           </Button>
         </div>
         <SearchButton
@@ -57,13 +111,16 @@ export default function Orders() {
             <TableRow className="border-foreground/40 text-xs">
               <TableHead className="w-8">
                 <Checkbox
+                  className="border-2 border-foreground/20"
                   checked={
-                    selectedRows.size === orderList.length &&
-                    orderList.length > 0
+                    selectedRows.size === paginatedOrders.length &&
+                    paginatedOrders.length > 0
                   }
                   onCheckedChange={(checked) => {
                     if (checked) {
-                      setSelectedRows(new Set(orderList.map((o) => o.orderId)));
+                      setSelectedRows(
+                        new Set(paginatedOrders.map((o) => o.orderId))
+                      );
                     } else {
                       setSelectedRows(new Set());
                     }
@@ -92,7 +149,7 @@ export default function Orders() {
           </TableHeader>
 
           <TableBody>
-            {orderList.map((order) => (
+            {paginatedOrders.map((order) => (
               <TableRow
                 key={order.orderId}
                 className="border-foreground/20 text-xs group hover:bg-primary-light"
@@ -100,7 +157,7 @@ export default function Orders() {
               >
                 <TableCell className="w-8 rounded-l-lg">
                   <Checkbox
-                    className="hidden group-hover:block data-[state=checked]:block"
+                    className="md:hidden md:group-hover:block block border-2 border-foreground/20 data-[state=checked]:block"
                     checked={selectedRows.has(order.orderId)}
                     onCheckedChange={(checked) => {
                       const newSet = new Set(selectedRows);
@@ -113,12 +170,14 @@ export default function Orders() {
                 </TableCell>
 
                 <TableCell>{order.orderId}</TableCell>
-                <TableCell className="flex items-center gap-2">
-                  <img
-                    src="https://i.pravatar.cc/300"
-                    className="h-6 w-6 rounded-full"
-                  />
-                  {order.userName}
+                <TableCell>
+                  <div className="flex items-center gap-2">
+                    <img
+                      src="https://i.pravatar.cc/300"
+                      className="h-6 w-6 rounded-full md:block hidden"
+                    />
+                    {order.userName}
+                  </div>
                 </TableCell>
                 <TableCell>{order.projectName}</TableCell>
                 <TableCell>
@@ -158,38 +217,92 @@ export default function Orders() {
         </Table>
       </div>
       <div className="ml-auto">
-        <OrdersPagination />
+        {/* <OrdersPagination /> */}
+        <OrdersPagination
+          page={page}
+          setPage={setPage}
+          totalPages={totalPages}
+        />
       </div>
     </div>
   );
 }
 
-function OrdersPagination() {
+// function OrdersPagination() {
+//   return (
+//     <Pagination>
+//       <PaginationContent className="gap-2">
+//         <PaginationItem>
+//           <PaginationPrevious href="#" />
+//         </PaginationItem>
+//         <PaginationItem>
+//           <PaginationLink href="#" isActive>
+//             1
+//           </PaginationLink>
+//         </PaginationItem>
+//         <PaginationItem>
+//           <PaginationLink href="#">2</PaginationLink>
+//         </PaginationItem>
+//         <PaginationItem>
+//           <PaginationLink href="#">3</PaginationLink>
+//         </PaginationItem>
+//         <PaginationItem>
+//           <PaginationLink href="#">4</PaginationLink>
+//         </PaginationItem>
+//         <PaginationItem>
+//           <PaginationLink href="#">5</PaginationLink>
+//         </PaginationItem>
+//         <PaginationItem>
+//           <PaginationNext href="#" />
+//         </PaginationItem>
+//       </PaginationContent>
+//     </Pagination>
+//   );
+// }
+
+function OrdersPagination({
+  page,
+  setPage,
+  totalPages,
+}: {
+  page: number;
+  setPage: (p: number) => void;
+  totalPages: number;
+}) {
   return (
     <Pagination>
       <PaginationContent className="gap-2">
+        {/* Previous */}
         <PaginationItem>
-          <PaginationPrevious href="#" />
+          <PaginationPrevious
+            onClick={() => page > 1 && setPage(page - 1)}
+            className={page === 1 ? "pointer-events-none opacity-40" : ""}
+          />
         </PaginationItem>
+
+        {/* Page numbers */}
+        {Array.from({ length: totalPages }).map((_, i) => {
+          const pageNumber = i + 1;
+          return (
+            <PaginationItem key={pageNumber}>
+              <PaginationLink
+                isActive={page === pageNumber}
+                onClick={() => setPage(pageNumber)}
+              >
+                {pageNumber}
+              </PaginationLink>
+            </PaginationItem>
+          );
+        })}
+
+        {/* Next */}
         <PaginationItem>
-          <PaginationLink href="#" isActive>
-            1
-          </PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">2</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">3</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">4</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">5</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationNext href="#" />
+          <PaginationNext
+            onClick={() => page < totalPages && setPage(page + 1)}
+            className={
+              page === totalPages ? "pointer-events-none opacity-40" : ""
+            }
+          />
         </PaginationItem>
       </PaginationContent>
     </Pagination>

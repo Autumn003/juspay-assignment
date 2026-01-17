@@ -213,7 +213,142 @@ export const contacts = [
   },
 ];
 
-export const orderList = [
+// export const orderList = [
+//   {
+//     orderId: "#CM9081",
+//     userName: "Natali Craig",
+//     userImage: "Female15.png",
+//     projectName: "Landing Page",
+//     address: "Meadow Lane Oakland",
+//     date: new Date(),
+//     status: "IN_PROGRESS",
+//     status_text: "In Progress",
+//     status_color: "#8a8cd9",
+//   },
+//   {
+//     orderId: "#CM9082",
+//     userName: "Kate Morrison",
+//     userImage: "Female09.png",
+//     projectName: "CRM Admin Pages",
+//     address: "Larry San Francisco",
+//     date: "2026-01-15T17:59:10.123Z",
+//     status: "COMPLETE",
+//     status_text: "Complete",
+//     status_color: "#4aa785",
+//   },
+//   {
+//     orderId: "#CM9083",
+//     userName: "Drew Cano",
+//     userImage: "Male08.png",
+//     projectName: "Client Project",
+//     address: "Bagwell Avenue Ocala",
+//     date: "2026-01-16T17:59:10.123Z",
+//     status: "PENDING",
+//     status_text: "Pending",
+//     status_color: "#59a8d4",
+//   },
+//   {
+//     orderId: "#CM9084",
+//     userName: "Orlando Diggs",
+//     userImage: "Male06.png",
+//     projectName: "Admin Dashboard",
+//     address: "Washburn Baton Rouge",
+//     date: "2026-01-17T17:59:10.123Z",
+//     status: "APPROVED",
+//     status_text: "Approved",
+//     status_color: "#ffc555",
+//   },
+//   {
+//     orderId: "#CM9085",
+//     userName: "Andie Lane",
+//     userImage: "Female08.png",
+//     projectName: "App Landing Page",
+//     address: "Nest Lane Olivette",
+//     date: "2026-01-17T04:59:10.123Z",
+//     status: "REJECTED",
+//     status_text: "Rejected",
+//     status_color: "#1c1c1c",
+//     dark_status_color: "rgba(255, 255, 255, 0.4)",
+//   },
+//   {
+//     orderId: "#CM9086",
+//     userName: "Natali Craig",
+//     userImage: "Female15.png",
+//     projectName: "Landing Page",
+//     address: "Meadow Lane Oakland",
+//     date: "2026-01-16T07:10:10.123Z",
+//     status: "IN_PROGRESS",
+//     status_text: "In Progress",
+//     status_color: "#8a8cd9",
+//   },
+//   {
+//     orderId: "#CM9087",
+//     userName: "Kate Morrison",
+//     userImage: "Female09.png",
+//     projectName: "CRM Admin Pages",
+//     address: "Larry San Francisco",
+//     date: "2026-01-17T17:59:10.123Z",
+//     status: "COMPLETE",
+//     status_text: "Complete",
+//     status_color: "#4aa785",
+//   },
+//   {
+//     orderId: "#CM9088",
+//     userName: "Drew Cano",
+//     userImage: "Male08.png",
+//     projectName: "Client Project",
+//     address: "Bagwell Avenue Ocala",
+//     date: "2026-01-11T17:59:10.123Z",
+//     status: "PENDING",
+//     status_text: "Pending",
+//     status_color: "#59a8d4",
+//   },
+//   {
+//     orderId: "#CM9089",
+//     userName: "Orlando Diggs",
+//     userImage: "Male06.png",
+//     projectName: "Admin Dashboard",
+//     address: "Washburn Baton Rouge",
+//     date: "2025-01-14T17:59:10.123Z",
+//     status: "APPROVED",
+//     status_text: "Approved",
+//     status_color: "#ffc555",
+//   },
+//   {
+//     orderId: "#CM9090",
+//     userName: "Andie Lane",
+//     userImage: "Female08.png",
+//     projectName: "App Landing Page",
+//     address: "Nest Lane Olivette",
+//     date: "2026-01-14T17:59:10.123Z",
+//     status: "REJECTED",
+//     status_text: "Rejected",
+//     status_color: "#1c1c1c",
+//     dark_status_color: "rgba(255, 255, 255, 0.4)",
+//   },
+// ];
+
+export type OrderStatus =
+  | "IN_PROGRESS"
+  | "COMPLETE"
+  | "PENDING"
+  | "APPROVED"
+  | "REJECTED";
+
+export interface Order {
+  orderId: string;
+  userName: string;
+  userImage: string;
+  projectName: string;
+  address: string;
+  date: string | Date;
+  status: OrderStatus;
+  status_text: string;
+  status_color: string;
+  dark_status_color?: string;
+}
+
+export const initialOrders: Order[] = [
   {
     orderId: "#CM9081",
     userName: "Natali Craig",
@@ -271,7 +406,7 @@ export const orderList = [
     dark_status_color: "rgba(255, 255, 255, 0.4)",
   },
   {
-    orderId: "#CM9081",
+    orderId: "#CM9086",
     userName: "Natali Craig",
     userImage: "Female15.png",
     projectName: "Landing Page",
@@ -282,7 +417,7 @@ export const orderList = [
     status_color: "#8a8cd9",
   },
   {
-    orderId: "#CM9082",
+    orderId: "#CM9087",
     userName: "Kate Morrison",
     userImage: "Female09.png",
     projectName: "CRM Admin Pages",
@@ -293,7 +428,7 @@ export const orderList = [
     status_color: "#4aa785",
   },
   {
-    orderId: "#CM9083",
+    orderId: "#CM9088",
     userName: "Drew Cano",
     userImage: "Male08.png",
     projectName: "Client Project",
@@ -304,7 +439,7 @@ export const orderList = [
     status_color: "#59a8d4",
   },
   {
-    orderId: "#CM9084",
+    orderId: "#CM9089",
     userName: "Orlando Diggs",
     userImage: "Male06.png",
     projectName: "Admin Dashboard",
@@ -315,7 +450,7 @@ export const orderList = [
     status_color: "#ffc555",
   },
   {
-    orderId: "#CM9085",
+    orderId: "#CM9090",
     userName: "Andie Lane",
     userImage: "Female08.png",
     projectName: "App Landing Page",

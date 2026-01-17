@@ -62,7 +62,7 @@ export default function Header() {
         </div>
       </div>
       <div className="flex items-center gap-5">
-        <SearchButton />
+        <SearchButton onClick={() => dispatch(openSearchbox())} />
         <div className="flex items-center gap-2">
           <button className="w-7 h-7 p-1" onClick={toggleTheme}>
             <Sun size={20} />
